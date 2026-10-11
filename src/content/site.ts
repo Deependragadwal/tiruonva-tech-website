@@ -10,7 +10,7 @@ export const site = {
   founded: "7 June 2024",
   founder: {
     name: "Deependra Gadwal",
-    title: "Founder & Director",
+    title: "Founder & CEO",
   },
   url: "https://tirunovatechnologies.co.in",
   email: "tirunovainfo@gmail.com",
@@ -39,6 +39,35 @@ export const navigation = [
   { href: "/products", label: "Products" },
   { href: "/projects", label: "Projects" },
   { href: "/contact", label: "Contact" },
+] as const;
+
+export const team = [
+  {
+    name: "Deependra Gadwal",
+    title: "Founder & CEO",
+    image: "/images/team/deependra.jpg",
+    imagePosition: "object-top",
+  },
+  { name: "Sandeep Lora", title: "Business Head" },
+  { name: "Mahesh Yadav", title: "Technical Head" },
+  {
+    name: "Kailash Gayari",
+    title: "Senior Developer",
+    image: "/images/team/kailash.jpg",
+  },
+  {
+    name: "Himanshu Taylor",
+    title: "Cyber Security Expert",
+    image: "/images/team/himanshu.jpg",
+    imagePosition: "object-left",
+  },
+  {
+    name: "Kavita Chaudhary",
+    title: "Accounts & HR Manager",
+    image: "/images/team/kavita.jpg",
+  },
+  { name: "Abhishek Yadav", title: "Sales Manager" },
+  { name: "Anil Singh", title: "Solar Expert" },
 ] as const;
 
 export const values = [

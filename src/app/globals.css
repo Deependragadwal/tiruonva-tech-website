@@ -106,7 +106,7 @@ img[data-nimg="fill"] {
 }
 
 .media-frame img[data-loaded="true"] {
-  opacity: 1;
+  opacity: 1 !important;
 }
 
 .media-frame:has(img[data-loaded="true"]) .image-shimmer,

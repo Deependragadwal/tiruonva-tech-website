@@ -11,6 +11,7 @@ export function MediaImage({
   priority = false,
   tone = "light",
   fit = "cover",
+  objectClassName,
 }: {
   src: string;
   alt: string;
@@ -19,6 +20,7 @@ export function MediaImage({
   priority?: boolean;
   tone?: "light" | "dark";
   fit?: "cover" | "contain";
+  objectClassName?: string;
 }) {
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -69,8 +71,9 @@ export function MediaImage({
           event.currentTarget.dataset.loaded = "true";
         }}
         className={cn(
-          "absolute inset-0 h-full w-full max-w-none opacity-0 transition-opacity duration-500 ease-out",
+          "absolute inset-0 h-full w-full max-w-none opacity-0 transition-opacity duration-500 ease-out data-[loaded=true]:opacity-100",
           fit === "contain" ? "object-contain" : "object-cover",
+          objectClassName,
         )}
       />
     </div>
