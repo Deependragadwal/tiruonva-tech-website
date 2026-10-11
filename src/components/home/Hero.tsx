@@ -1,8 +1,7 @@
-import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { MediaImage } from "@/components/ui/MediaImage";
 import { site } from "@/content/site";
-import { publicAsset } from "@/lib/paths";
 
 export function Hero() {
   return (
@@ -37,16 +36,13 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl bg-surface-2">
-          <Image
-            src={publicAsset("/images/home/hero.jpg")}
-            alt="Tirunova technicians installing networking and security systems"
-            fill
-            priority
-            sizes="(min-width: 1024px) 40vw, 100vw"
-            className="h-full w-full max-w-none object-cover"
-          />
-        </div>
+        <MediaImage
+          src="/images/home/hero.jpg"
+          alt="Tirunova technicians installing networking and security systems"
+          priority
+          sizes="(min-width: 1024px) 40vw, 100vw"
+          className="aspect-[16/10] w-full rounded-3xl"
+        />
       </Container>
     </section>
   );

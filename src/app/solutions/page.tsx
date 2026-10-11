@@ -19,6 +19,8 @@ export default function SolutionsPage() {
         title="Integrated technology solutions under one roof"
         description="Tirunova Technologies — your single technology partner for IT, security, software and solar solutions. Explore each practice in detail rather than a long product catalogue on one page."
         image="/images/pages/solutions.jpg"
+        imageFit="contain"
+        imageClassName="aspect-[3/4] bg-white"
       />
       <section className="py-12 sm:py-16 lg:py-20">
         <Container className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">

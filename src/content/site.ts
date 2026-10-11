@@ -232,7 +232,15 @@ export const oemPartners = [
   "Lenovo",
 ] as const;
 
-export const solarBrands = ["TATA Solar", "Adani Solar", "Waaree", "INA"] as const;
+export const solarBrands = [
+  "TATA Solar",
+  "Adani Solar",
+  "Waaree",
+  "INA",
+  "Luminous",
+  "Longi",
+  "Havells",
+] as const;
 
 export const approach = [
   "Consultation",

@@ -1,6 +1,5 @@
-import Image from "next/image";
 import { Container } from "@/components/ui/Container";
-import { publicAsset } from "@/lib/paths";
+import { MediaImage } from "@/components/ui/MediaImage";
 import { cn } from "@/lib/cn";
 
 export function PageHero({
@@ -9,12 +8,16 @@ export function PageHero({
   description,
   image,
   imageAlt,
+  imageFit = "cover",
+  imageClassName,
 }: {
   eyebrow: string;
   title: string;
   description: string;
   image?: string;
   imageAlt?: string;
+  imageFit?: "cover" | "contain";
+  imageClassName?: string;
 }) {
   return (
     <section className="relative overflow-hidden border-b border-line bg-surface">
@@ -35,16 +38,14 @@ export function PageHero({
           <p className="mt-5 max-w-2xl text-base leading-7 text-muted sm:text-lg">{description}</p>
         </div>
         {image ? (
-          <div className="relative aspect-[16/10] overflow-hidden rounded-3xl bg-surface-2">
-            <Image
-              src={publicAsset(image)}
-              alt={imageAlt ?? title}
-              fill
-              priority
-              sizes="(min-width: 1024px) 40vw, 100vw"
-              className="h-full w-full max-w-none object-cover"
-            />
-          </div>
+          <MediaImage
+            src={image}
+            alt={imageAlt ?? title}
+            priority
+            fit={imageFit}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            className={cn("rounded-3xl", imageClassName ?? "aspect-[16/10]")}
+          />
         ) : null}
       </Container>
     </section>

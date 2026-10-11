@@ -71,3 +71,57 @@ img[data-nimg="fill"] {
     linear-gradient(90deg, rgba(18, 40, 71, 0.045) 1px, transparent 1px);
   background-size: 48px 48px;
 }
+
+.image-shimmer,
+.image-shimmer-dark {
+  background-size: 200% 100%;
+  animation: image-shimmer 1.35s ease-in-out infinite;
+}
+
+.image-shimmer {
+  background-image: linear-gradient(
+    100deg,
+    #e8eef5 0%,
+    #f7fafc 42%,
+    #e8eef5 84%
+  );
+}
+
+.image-shimmer-dark {
+  background-image: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.16) 42%,
+    rgba(255, 255, 255, 0.05) 84%
+  );
+}
+
+@keyframes image-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.media-frame img[data-loaded="true"] {
+  opacity: 1;
+}
+
+.media-frame:has(img[data-loaded="true"]) .image-shimmer,
+.media-frame:has(img[data-loaded="true"]) .image-shimmer-dark {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image-shimmer,
+  .image-shimmer-dark {
+    animation: none;
+  }
+
+  .media-frame img {
+    transition: none;
+  }
+}

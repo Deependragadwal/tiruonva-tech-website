@@ -9,7 +9,7 @@ import { productGroups } from "@/content/products";
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "Communication, computing, audio visual, networking and security products supplied by Tirunova Technologies.",
+    "Communication, computing, audio visual, networking, security, Ajax intrusion alarm, website development and power backup products from Tirunova Technologies.",
 };
 
 export default function ProductsPage() {
@@ -20,6 +20,8 @@ export default function ProductsPage() {
         title="Security and technology products"
         description="A focused product catalogue organised by category. We recommend solutions according to requirement, performance and budget — then install and support them properly."
         image="/images/pages/products.jpg"
+        imageFit="contain"
+        imageClassName="aspect-square bg-white lg:aspect-[4/5]"
       />
       <section className="py-12 sm:py-16 lg:py-20">
         <Container className="grid gap-6 lg:grid-cols-2">
