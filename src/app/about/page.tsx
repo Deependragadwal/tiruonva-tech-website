@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { CtaBanner } from "@/components/ui/CtaBanner";
+import { MediaImage } from "@/components/ui/MediaImage";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { WhyChooseCard } from "@/components/ui/WhyChooseCard";
-import { approach, site, values, whyChoose } from "@/content/site";
+import { approach, site, team, values, whyChoose } from "@/content/site";
 import { publicAsset } from "@/lib/paths";
 
 export const metadata: Metadata = {
@@ -95,6 +96,59 @@ export default function AboutPage() {
               </span>
             ))}
           </div>
+        </Container>
+      </section>
+
+      <section className="border-y border-line bg-surface py-12 sm:py-16 lg:py-20">
+        <Container>
+          <SectionHeading
+            eyebrow="Team"
+            title="The people behind Tirunova"
+            description="A focused team covering leadership, delivery, security, solar, sales and operations."
+          />
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            {team.map((member) => {
+              const initials = member.name
+                .split(" ")
+                .filter(Boolean)
+                .map((part) => part[0])
+                .join("")
+                .slice(0, 2);
+
+              return (
+                <li
+                  key={member.name}
+                  className="min-w-0 overflow-hidden rounded-3xl border border-line bg-white"
+                >
+                  {"image" in member && member.image ? (
+                    <MediaImage
+                      src={member.image}
+                      alt={member.name}
+                      className="aspect-square"
+                      objectClassName={
+                        "imagePosition" in member ? member.imagePosition : undefined
+                      }
+                    />
+                  ) : (
+                    <div
+                      aria-hidden
+                      className="flex aspect-square items-center justify-center bg-surface-2"
+                    >
+                      <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-navy font-heading text-lg font-semibold text-white">
+                        {initials}
+                      </span>
+                    </div>
+                  )}
+                  <div className="p-5 sm:p-6">
+                    <h3 className="font-heading text-lg font-semibold text-pretty text-navy">
+                      {member.name}
+                    </h3>
+                    <p className="mt-1 text-sm text-muted">{member.title}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
         </Container>
       </section>
 
