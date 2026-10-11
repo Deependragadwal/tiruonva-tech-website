@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { publicAsset } from "@/lib/paths";
 import { cn } from "@/lib/cn";
 
@@ -22,11 +22,45 @@ export function MediaImage({
   fit?: "cover" | "contain";
   objectClassName?: string;
 }) {
+  const frameRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
+  const resolvedSrc = publicAsset(src);
+  const [activeSrc, setActiveSrc] = useState<string | undefined>(
+    priority ? resolvedSrc : undefined,
+  );
+
+  useLayoutEffect(() => {
+    if (priority) {
+      setActiveSrc(resolvedSrc);
+      return;
+    }
+
+    const frame = frameRef.current;
+    if (!frame) return;
+
+    const show = () => setActiveSrc(resolvedSrc);
+
+    if (typeof IntersectionObserver === "undefined") {
+      show();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        show();
+        observer.disconnect();
+      },
+      { rootMargin: "160px 0px", threshold: 0.01 },
+    );
+
+    observer.observe(frame);
+    return () => observer.disconnect();
+  }, [priority, resolvedSrc]);
 
   useLayoutEffect(() => {
     const img = imgRef.current;
-    if (!img) return;
+    if (!img || !activeSrc) return;
 
     const reveal = () => {
       img.dataset.loaded = "true";
@@ -43,10 +77,11 @@ export function MediaImage({
       img.removeEventListener("load", reveal);
       img.removeEventListener("error", reveal);
     };
-  }, [src]);
+  }, [activeSrc]);
 
   return (
     <div
+      ref={frameRef}
       className={cn(
         "media-frame relative overflow-hidden",
         tone === "dark" ? "bg-white/10" : "bg-surface-2",
@@ -60,22 +95,24 @@ export function MediaImage({
           tone === "dark" ? "image-shimmer-dark" : "image-shimmer",
         )}
       />
-      <img
-        ref={imgRef}
-        src={publicAsset(src)}
-        alt={alt}
-        decoding={priority ? "sync" : "async"}
-        loading={priority ? "eager" : "lazy"}
-        fetchPriority={priority ? "high" : "auto"}
-        onLoad={(event) => {
-          event.currentTarget.dataset.loaded = "true";
-        }}
-        className={cn(
-          "absolute inset-0 h-full w-full max-w-none opacity-0 transition-opacity duration-500 ease-out data-[loaded=true]:opacity-100",
-          fit === "contain" ? "object-contain" : "object-cover",
-          objectClassName,
-        )}
-      />
+      {activeSrc ? (
+        <img
+          ref={imgRef}
+          src={activeSrc}
+          alt={alt}
+          decoding={priority ? "sync" : "async"}
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "low"}
+          onLoad={(event) => {
+            event.currentTarget.dataset.loaded = "true";
+          }}
+          className={cn(
+            "absolute inset-0 h-full w-full max-w-none opacity-0 transition-opacity duration-500 ease-out data-[loaded=true]:opacity-100",
+            fit === "contain" ? "object-contain" : "object-cover",
+            objectClassName,
+          )}
+        />
+      ) : null}
     </div>
   );
 }

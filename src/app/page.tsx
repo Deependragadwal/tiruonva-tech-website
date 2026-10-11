@@ -59,7 +59,7 @@ export default function HomePage() {
               <SolutionCard
                 key={solution.slug}
                 solution={solution}
-                priority={index < 3}
+                priority={index < 2}
               />
             ))}
           </div>

@@ -29,7 +29,7 @@ export default function SolutionsPage() {
               key={solution.slug}
               solution={solution}
               description={solution.description}
-              priority={index < 3}
+              priority={index < 2}
             />
           ))}
         </Container>
