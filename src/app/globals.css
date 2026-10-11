@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #122033;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-navy: #0b1d36;
+  --color-navy-800: #122847;
+  --color-blue: #1558b0;
+  --color-blue-600: #1a6fd4;
+  --color-blue-700: #0e4a96;
+  --color-orange: #e87a1a;
+  --color-orange-500: #f08a2a;
+  --color-orange-600: #d46a12;
+  --color-ink: #122033;
+  --color-muted: #5a6a7a;
+  --color-line: #e4eaf1;
+  --color-surface: #f6f8fb;
+  --color-surface-2: #eef3f9;
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-heading);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), "Segoe UI", sans-serif;
+  overflow-x: clip;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* next/image fill uses absolute 100% sizing; the rule above collapses those photos. */
+img[data-nimg="fill"] {
+  max-width: none;
+  width: 100%;
+  height: 100%;
+}
+
+::selection {
+  background: #1558b0;
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid #e87a1a;
+  outline-offset: 3px;
+}
+
+.font-heading {
+  font-family: var(--font-heading), var(--font-sans), sans-serif;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(18, 40, 71, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 40, 71, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
