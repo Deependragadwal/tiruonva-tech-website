@@ -1,13 +1,12 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { CtaBanner } from "@/components/ui/CtaBanner";
+import { MediaImage } from "@/components/ui/MediaImage";
 import { PageHero } from "@/components/ui/PageHero";
 import { solarBrands } from "@/content/site";
 import type { Solution } from "@/content/solutions";
 import { solutions } from "@/content/solutions";
-import { publicAsset } from "@/lib/paths";
 
 export function SolutionDetail({ solution }: { solution: Solution }) {
   const related = solutions.filter((item) => item.slug !== solution.slug).slice(0, 3);
@@ -35,9 +34,32 @@ export function SolutionDetail({ solution }: { solution: Solution }) {
                 </li>
               ))}
             </ul>
+            {solution.gallery?.length ? (
+              <div className="mt-10 grid gap-4">
+                {solution.gallery.map((item) => (
+                  <MediaImage
+                    key={item.src}
+                    src={item.src}
+                    alt={item.alt}
+                    fit="contain"
+                    className="aspect-[2/3] rounded-3xl border border-line bg-white"
+                  />
+                ))}
+              </div>
+            ) : null}
             {solution.slug === "solar-energy" ? (
               <div className="mt-10 rounded-3xl border border-line p-5 sm:p-6">
-                <h3 className="font-heading text-xl font-semibold text-navy">Solar brands</h3>
+                <h3 className="font-heading text-xl font-semibold text-navy">
+                  Government subsidy
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-muted">
+                  Eligible residential rooftop systems may qualify for government subsidy under
+                  current schemes such as PM Surya Ghar. Tirunova can help with documentation and
+                  the application. The sanctioned amount depends on the scheme in force and your
+                  eligibility — we confirm this during consultation rather than promising a fixed
+                  figure.
+                </p>
+                <h3 className="font-heading mt-6 text-xl font-semibold text-navy">Solar brands</h3>
                 <p className="mt-2 text-sm text-muted">
                   Where applicable, we can supply and install systems using brands we currently
                   source. Final availability is confirmed during consultation.
@@ -57,15 +79,13 @@ export function SolutionDetail({ solution }: { solution: Solution }) {
               {related.map((item) => (
                 <li key={item.slug}>
                   <Link href={`/solutions/${item.slug}`} className="group block">
-                    <div className="relative mb-3 aspect-[16/9] overflow-hidden rounded-2xl bg-white/10">
-                      <Image
-                        src={publicAsset(item.image)}
-                        alt=""
-                        fill
-                        sizes="(min-width: 1024px) 30vw, 100vw"
-                        className="h-full w-full max-w-none object-cover"
-                      />
-                    </div>
+                    <MediaImage
+                      src={item.image}
+                      alt=""
+                      tone="dark"
+                      sizes="(min-width: 1024px) 30vw, 100vw"
+                      className="mb-3 aspect-[16/9] rounded-2xl"
+                    />
                     <p className="text-lg font-medium group-hover:text-orange-500">{item.name}</p>
                     <p className="mt-1 text-sm text-white/60">{item.headline}</p>
                   </Link>

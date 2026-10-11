@@ -8,6 +8,7 @@ export type Solution = {
   description: string;
   items: string[];
   groups?: { title: string; items: string[] }[];
+  gallery?: { src: string; alt: string }[];
   cta: string;
   seoTitle: string;
   seoDescription: string;
@@ -32,6 +33,7 @@ export const solutions: Solution[] = [
       "Server Solutions",
       "WiFi & Hotspot Solutions",
       "Smart WiFi",
+      "Mobile Signal Boosters",
       "Fibre Optic Networking",
       "VPN & Remote Connectivity",
       "Network Infrastructure",
@@ -83,7 +85,9 @@ export const solutions: Solution[] = [
       "Biometric Devices",
       "Biometric Locks",
       "Smart Door Locks",
+      "VC Door Locks",
       "Access Control Systems",
+      "Ajax Intrusion Alarm Security",
       "Theft Alarm Sensors",
       "Fire Alarm Panels",
       "Fire Extinguishers",
@@ -193,17 +197,36 @@ export const solutions: Solution[] = [
     eyebrow: "Clean Energy",
     headline: "Smart energy. Sustainable future.",
     description:
-      "Tirunova Technologies provides solar energy solutions designed to help customers reduce electricity costs and move towards clean, sustainable energy — from consultation through installation, maintenance and system expansion.",
+      "Tirunova Technologies provides solar energy solutions designed to help customers reduce electricity costs and move towards clean, sustainable energy — from consultation through installation, maintenance and system expansion. Eligible residential rooftop systems may also qualify for government subsidy under current schemes such as PM Surya Ghar.",
     items: [
       "Residential Solar",
       "Commercial Solar",
       "Industrial Solar",
+      "Institutional Solar",
+      "Government Solar Projects",
       "Rooftop Solar",
+      "Ground-Mounted Solar",
       "On-Grid Solar",
+      "Off-Grid Solar",
+      "Hybrid Solar Systems",
+      "Solar Inverters & Components",
+      "Solar Battery Storage",
+      "Solar Street Lights",
+      "EV Charging with Solar",
       "Solar Consultation",
       "Solar Installation",
       "Solar Maintenance",
       "Solar System Expansion",
+    ],
+    gallery: [
+      {
+        src: "/images/solutions/solar-subsidy.jpg",
+        alt: "Tirunova solar solutions, services and government subsidy overview",
+      },
+      {
+        src: "/images/solutions/solar-epc.jpg",
+        alt: "Tirunova end-to-end solar EPC process and project types",
+      },
     ],
     cta: "Request Solar Consultation",
     seoTitle: "Solar Energy Solutions in Jaipur",

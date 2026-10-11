@@ -22,6 +22,7 @@ export function WhyChooseCard({
       <CardImage
         src={image}
         alt={title}
+        tone={light ? "light" : "dark"}
         sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
       />
       <div className="p-5 sm:p-6">
