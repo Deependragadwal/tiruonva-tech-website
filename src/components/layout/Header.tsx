@@ -54,10 +54,10 @@ export function Header() {
       <Container className="flex items-center justify-between gap-3 py-2 sm:gap-4 sm:py-2.5 xl:gap-6 xl:py-3">
         <Link href="/" className="shrink-0" aria-label={`${site.name} home`}>
           <Image
-            src={publicAsset("/logo.jpg")}
+            src={publicAsset("/logo-sm.webp")}
             alt={site.name}
-            width={1024}
-            height={1024}
+            width={160}
+            height={160}
             priority
             className="h-14 w-14 object-contain sm:h-16 sm:w-16 xl:h-20 xl:w-20"
           />

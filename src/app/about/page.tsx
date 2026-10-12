@@ -28,10 +28,10 @@ export default function AboutPage() {
       <section className="py-12 sm:py-16 lg:py-20">
         <Container className="grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-12">
           <Image
-            src={publicAsset("/logo.jpg")}
+            src={publicAsset("/logo-md.webp")}
             alt={`${site.name} logo`}
-            width={1024}
-            height={1024}
+            width={320}
+            height={320}
             className="mx-auto w-full max-w-[16rem] object-contain sm:max-w-sm"
           />
           <div className="min-w-0">

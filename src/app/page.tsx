@@ -1,3 +1,4 @@
+import { preload } from "react-dom";
 import { Hero } from "@/components/home/Hero";
 import { SolutionCard } from "@/components/solutions/SolutionCard";
 import { Button } from "@/components/ui/Button";
@@ -6,6 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { CtaBanner } from "@/components/ui/CtaBanner";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { WhyChooseCard } from "@/components/ui/WhyChooseCard";
+import { publicAsset } from "@/lib/paths";
 import {
   approach,
   benefits,
@@ -17,6 +19,11 @@ import {
 import { solutions } from "@/content/solutions";
 
 export default function HomePage() {
+  preload(publicAsset("/images/home/hero.webp"), {
+    as: "image",
+    fetchPriority: "high",
+  });
+
   return (
     <>
       <Hero />
@@ -59,14 +66,14 @@ export default function HomePage() {
               <SolutionCard
                 key={solution.slug}
                 solution={solution}
-                priority={index < 3}
+                priority={index < 2}
               />
             ))}
           </div>
         </Container>
       </section>
 
-      <section className="bg-navy py-12 text-white sm:py-16 lg:py-20">
+      <section className="defer-paint bg-navy py-12 text-white sm:py-16 lg:py-20">
         <Container>
           <SectionHeading
             eyebrow="Why Tirunova"
@@ -81,7 +88,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section className="py-12 sm:py-16 lg:py-20">
+      <section className="defer-paint py-12 sm:py-16 lg:py-20">
         <Container>
           <SectionHeading
             eyebrow="Industries"
@@ -109,7 +116,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section className="border-y border-line bg-surface py-12 sm:py-16 lg:py-20">
+      <section className="defer-paint border-y border-line bg-surface py-12 sm:py-16 lg:py-20">
         <Container>
           <SectionHeading
             eyebrow="Process"
@@ -137,7 +144,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section className="py-12 sm:py-16 lg:py-20">
+      <section className="defer-paint py-12 sm:py-16 lg:py-20">
         <Container>
           <SectionHeading eyebrow="Client benefits" title="What customers gain" />
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">

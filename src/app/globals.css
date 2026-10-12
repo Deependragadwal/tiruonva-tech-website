@@ -28,6 +28,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
+  overflow-y: scroll;
 }
 
 body {
@@ -35,6 +36,11 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), "Segoe UI", sans-serif;
   overflow-x: clip;
+}
+
+.defer-paint {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
 }
 
 img,
@@ -116,6 +122,10 @@ img[data-nimg="fill"] {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .image-shimmer,
   .image-shimmer-dark {
     animation: none;
