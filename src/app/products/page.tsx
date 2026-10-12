@@ -25,7 +25,7 @@ export default function ProductsPage() {
       />
       <section className="py-12 sm:py-16 lg:py-20">
         <Container className="grid gap-6 lg:grid-cols-2">
-          {productGroups.map((group) => (
+          {productGroups.map((group, index) => (
             <article
               key={group.title}
               className="min-w-0 overflow-hidden rounded-3xl border border-line bg-white"
@@ -34,6 +34,7 @@ export default function ProductsPage() {
                 src={group.image}
                 alt={group.title}
                 sizes="(min-width: 1024px) 50vw, 100vw"
+                priority={index < 2}
               />
               <div className="p-5 sm:p-7">
                 <h2 className="font-heading text-2xl font-semibold text-navy">{group.title}</h2>

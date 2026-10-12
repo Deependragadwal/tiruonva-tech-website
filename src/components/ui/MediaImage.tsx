@@ -1,7 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
-import { publicAsset } from "@/lib/paths";
+import { mediaAsset } from "@/lib/paths";
 import { cn } from "@/lib/cn";
 
 export function MediaImage({
@@ -24,7 +24,7 @@ export function MediaImage({
 }) {
   const frameRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
-  const resolvedSrc = publicAsset(src);
+  const resolvedSrc = mediaAsset(src);
   const [activeSrc, setActiveSrc] = useState<string | undefined>(
     priority ? resolvedSrc : undefined,
   );
@@ -51,7 +51,7 @@ export function MediaImage({
         show();
         observer.disconnect();
       },
-      { rootMargin: "160px 0px", threshold: 0.01 },
+      { rootMargin: "720px 0px", threshold: 0.01 },
     );
 
     observer.observe(frame);
@@ -88,26 +88,32 @@ export function MediaImage({
         className,
       )}
     >
-      <div
-        aria-hidden
-        className={cn(
-          "absolute inset-0 transition-opacity duration-300",
-          tone === "dark" ? "image-shimmer-dark" : "image-shimmer",
-        )}
-      />
+      {!priority ? (
+        <div
+          aria-hidden
+          className={cn(
+            "absolute inset-0 transition-opacity duration-200",
+            tone === "dark" ? "image-shimmer-dark" : "image-shimmer",
+          )}
+        />
+      ) : null}
       {activeSrc ? (
         <img
           ref={imgRef}
           src={activeSrc}
           alt={alt}
-          decoding={priority ? "sync" : "async"}
+          data-nimg="fill"
+          decoding="async"
           loading={priority ? "eager" : "lazy"}
           fetchPriority={priority ? "high" : "low"}
           onLoad={(event) => {
             event.currentTarget.dataset.loaded = "true";
           }}
           className={cn(
-            "absolute inset-0 h-full w-full max-w-none opacity-0 transition-opacity duration-500 ease-out data-[loaded=true]:opacity-100",
+            "absolute inset-0 h-full w-full max-w-none",
+            priority
+              ? "opacity-100"
+              : "opacity-0 transition-opacity duration-200 ease-out data-[loaded=true]:opacity-100",
             fit === "contain" ? "object-contain" : "object-cover",
             objectClassName,
           )}

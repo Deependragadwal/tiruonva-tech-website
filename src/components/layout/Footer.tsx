@@ -30,10 +30,10 @@ export function Footer() {
       <Container className="grid gap-12 py-12 sm:py-16 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <Image
-            src={publicAsset("/logo.jpg")}
+            src={publicAsset("/logo-sm.webp")}
             alt={site.name}
-            width={1024}
-            height={1024}
+            width={160}
+            height={160}
             className="h-20 w-20 rounded-2xl bg-white object-contain p-1 sm:h-24 sm:w-24"
           />
           <p className="mt-5 font-heading text-lg font-semibold">{site.name}</p>

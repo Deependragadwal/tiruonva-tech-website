@@ -10,11 +10,13 @@ const heading = Plus_Jakarta_Sans({
   variable: "--font-heading",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
+  display: "swap",
 });
 
 const sans = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const viewport: Viewport = {
@@ -87,7 +89,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${heading.variable} ${sans.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col overflow-x-clip bg-white font-sans text-ink">
+      <body className="flex min-h-full flex-col bg-white font-sans text-ink">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
